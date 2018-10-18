@@ -76,7 +76,7 @@ class ri(Rubylike):
         return ri(reversed(self.to_a()))
 
     def shuffle(self):
-        cp = copy.copy(self.data)
+        cp = self.to_a()
         random.shuffle(cp)
         return ri(cp)
 
