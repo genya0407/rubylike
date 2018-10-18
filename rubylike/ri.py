@@ -16,6 +16,9 @@ class ri(Rubylike):
         else:
             return a[0]
 
+    def len(self):
+        return len(self.to_a())
+
     def to_a(self):
         return list(self.data)
 
