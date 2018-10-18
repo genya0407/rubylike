@@ -20,6 +20,11 @@ class ri(Rubylike):
         else:
             return a[0]
 
+    def find(self, func):
+        for elem in self:
+            if func(elem):
+                return elem
+
     def len(self):
         return len(self.to_a())
 

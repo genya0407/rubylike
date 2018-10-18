@@ -4,6 +4,8 @@ from rubylike import ri
 class TestRi(unittest.TestCase):
     def test_ri(self):
         self.assertEqual(ri([1,2,3]).first(), 1)
+        self.assertEqual(ri([1,2,3,4]).find(lambda x: x > 2), 3)
+        self.assertEqual(ri([1,2,3,4]).find(lambda x: x > 10), None)
         self.assertEqual(ri([1,2,3,4,5]).len(), 5)
         self.assertEqual(ri([1,2,3]).take(2).to_a(), [1,2])
         self.assertEqual(ri([1,2,3]).takewhile(lambda x: x < 3).to_a(), [1,2])
