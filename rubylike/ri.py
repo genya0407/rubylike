@@ -9,6 +9,9 @@ class ri(Rubylike):
     def __iter__(self):
         return iter(self.data)
 
+    def to_a(self):
+        return list(self.data)
+
     def first(self):
         a = self.to_a()
         if len(a) == 0:
@@ -19,8 +22,11 @@ class ri(Rubylike):
     def len(self):
         return len(self.to_a())
 
-    def to_a(self):
-        return list(self.data)
+    def take(self, n):
+        return ri(self.to_a()[:n])
+
+    def drop(self, n):
+        return ri(self.to_a()[n:])
 
     def map(self, func):
         return ri(map(func, self.data))
