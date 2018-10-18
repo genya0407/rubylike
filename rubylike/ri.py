@@ -1,5 +1,6 @@
 import copy
 import random
+import itertools as it
 from .rubylike import Rubylike
 
 class ri(Rubylike):
@@ -25,8 +26,14 @@ class ri(Rubylike):
     def take(self, n):
         return ri(self.to_a()[:n])
 
+    def takewhile(self, func):
+        return ri(it.takewhile(func, self.data))
+
     def drop(self, n):
         return ri(self.to_a()[n:])
+
+    def dropwhile(self, func):
+        return ri(it.dropwhile(func, self.data))
 
     def map(self, func):
         return ri(map(func, self.data))

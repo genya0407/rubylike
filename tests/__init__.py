@@ -6,7 +6,9 @@ class TestRi(unittest.TestCase):
         self.assertEqual(ri([1,2,3]).first(), 1)
         self.assertEqual(ri([1,2,3,4,5]).len(), 5)
         self.assertEqual(ri([1,2,3]).take(2).to_a(), [1,2])
+        self.assertEqual(ri([1,2,3]).takewhile(lambda x: x < 3).to_a(), [1,2])
         self.assertEqual(ri([1,2,3]).drop(2).to_a(), [3])
+        self.assertEqual(ri([1,2,3]).dropwhile(lambda x: x < 3).to_a(), [3])
         self.assertEqual(ri([1,2,3]).map(lambda x: x * 10).to_a(), [10, 20, 30])
         self.assertEqual(ri([1,2,3]).filter(lambda x: x < 3).to_a(), [1,2])
 
