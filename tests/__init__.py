@@ -33,5 +33,10 @@ class TestRi(unittest.TestCase):
         for sampled in ri(original).sample(3):
             self.assertIn(sampled, original)
 
+        self.assertTrue(ri([True, True, True]).all())
+        self.assertTrue(ri([1,2,3]).all(lambda x: x < 5))
+        self.assertTrue(ri([True, False, True]).any())
+        self.assertTrue(ri([1,2,3]).any(lambda x: x > 2))
+
 if __name__ == '__main__':
     unittest.main()

@@ -63,3 +63,15 @@ class ri(Rubylike):
             return random.sample(self.to_a(), 1)[0]
         else:
             return ri(random.sample(self.to_a(), n))
+
+    def all(self, func=None):
+        if func == None:
+            return all(self.to_a())
+        else:
+            return all(self.map(func).to_a())
+
+    def any(self, func=None):
+        if func == None:
+            return any(self.to_a())
+        else:
+            return any(self.map(func).to_a())
