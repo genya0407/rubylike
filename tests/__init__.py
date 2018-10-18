@@ -12,7 +12,8 @@ class TestRi(unittest.TestCase):
         self.assertEqual(ri([1,2,3]).drop(2).to_a(), [3])
         self.assertEqual(ri([1,2,3]).dropwhile(lambda x: x < 3).to_a(), [3])
         self.assertEqual(ri([1,2,3]).map(lambda x: x * 10).to_a(), [10, 20, 30])
-        self.assertEqual(ri([1,2,3]).filter(lambda x: x < 3).to_a(), [1,2])
+        self.assertEqual(ri([1,2,3]).select(lambda x: x < 3).to_a(), [1,2])
+        self.assertEqual(ri([1,2,3]).reject(lambda x: x < 3).to_a(), [3])
 
         each_result = []
         self.assertEqual(ri([1,2,3]).each(lambda x: each_result.append(x)), None)
@@ -44,6 +45,11 @@ class TestRi(unittest.TestCase):
         self.assertTrue(ri([1,2,3]).all(lambda x: x < 5))
         self.assertTrue(ri([True, False, True]).any())
         self.assertTrue(ri([1,2,3]).any(lambda x: x > 2))
+
+        self.assertEqual(ri([1,2,3]).reduce(lambda x, y: x+y), 6)
+        self.assertEqual(ri([1,2,3]).reduce(lambda x, y: x+y, 1), 7)
+        #self.assertEqual(ri([1,2,3]).reduce('+'), 6)
+        #self.assertEqual(ri([1,2,3]).reduce('+', 1), 7)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,7 @@
 import copy
 import random
 import itertools as it
+import functools as fc
 from .rubylike import Rubylike
 
 class ri(Rubylike):
@@ -43,8 +44,11 @@ class ri(Rubylike):
     def map(self, func):
         return ri(map(func, self.data))
 
-    def filter(self, func):
+    def select(self, func):
         return ri(filter(func, self.data))
+
+    def reject(self, func):
+        return self.select(lambda x: not func(x))
 
     def each(self, func):
         for elem in self:
@@ -96,3 +100,9 @@ class ri(Rubylike):
             return any(self.to_a())
         else:
             return any(self.map(func).to_a())
+
+    def reduce(self, func, initializer=None):
+        if initializer is None:
+            return fc.reduce(func, self.data)
+        else:
+            return fc.reduce(func, self.data, initializer)
