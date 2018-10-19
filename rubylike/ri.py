@@ -9,10 +9,12 @@ class ri(Rubylike):
         self.data = arraylike
 
     def __iter__(self):
-        return iter(self.data)
+        return iter(self.to_a())
 
     def to_a(self):
-        return list(self.data)
+        array = list(self.data)
+        self.data = ri(array)
+        return array
 
     def first(self):
         a = self.to_a()
